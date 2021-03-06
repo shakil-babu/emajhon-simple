@@ -1,8 +1,9 @@
 import React from 'react' ;
+import { Link } from 'react-router-dom';
 import './Cart.css';
 
 const Cart = ({cart}) => {
-    let productPrice = cart.reduce((total, cur) => total + cur.price , 0).toFixed(2);
+    let productPrice = cart.reduce((total, cur) => total + cur.price * cur.quantity , 0);
     
     const shipping = (total) =>{
         let Shipping = 0 ;
@@ -17,9 +18,9 @@ const Cart = ({cart}) => {
     }
     const shippingCost = shipping(productPrice);
     console.log(shippingCost)
-    let totalPrice = productPrice + shippingCost ;
+    let totalPrice = productPrice + shippingCost
     const tax = (productPrice / 10).toFixed(2);
-    const grandTotal = totalPrice + tax ;
+    const grandTotal = totalPrice + parseFloat(tax) ;
     return (
         <>
             <section className="cart-details">
@@ -30,6 +31,7 @@ const Cart = ({cart}) => {
             <p>Tax + VAT : {tax} </p>
             <p>Total price: {totalPrice}</p>
             <h5>Order Total: {grandTotal} </h5>
+            <Link to='/review' ><button className='btn'>Review Order</button></Link>
             </section>   
         </>
     )
