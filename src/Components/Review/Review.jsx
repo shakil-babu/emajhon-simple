@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './Review.css';
-import {getDatabaseCart,removeFromDatabaseCart} from '../../utilities/databaseManager';
+import {getDatabaseCart,processOrder,removeFromDatabaseCart} from '../../utilities/databaseManager';
 import fakeData from '../../fakeData/index.js';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
+import happyImg from '../../images/giphy.gif';
 const Review = () => {
     const [cart, setCart] = useState([]);
+    const [orderPlaced, setOrderPlaced] = useState(false);
     useEffect(() => {
         const savedData = getDatabaseCart();
         const productKeys = Object.keys(savedData);
@@ -14,13 +16,17 @@ const Review = () => {
             product.quantity = savedData[key];
             return product ;
         })
-    console.log(cartProduct);
     setCart(cartProduct);
     },[])
     const removeHandler = (key) => {
         const newCart = cart.filter((item) => item.key !== key);
         setCart(newCart)
         removeFromDatabaseCart(key);
+    }
+    const handlePlaceOrder = () => {
+        setCart([]);
+        processOrder();
+        setOrderPlaced(true);
     }
     return (
         <>
@@ -29,9 +35,13 @@ const Review = () => {
                 {
                 cart.map(product => <ReviewItem remove = {removeHandler} key={product.key} product ={product}/>)
             }
+
+            {orderPlaced && <img src={happyImg} alt=""/> }
                 </div>
                 <div className="cart-containr">
-                    <Cart cart={cart} />
+                    <Cart cart={cart} >
+                        <button onClick={handlePlaceOrder} className='btn'>Place order</button>
+                    </Cart>
                 </div>
             </div>
         </>
