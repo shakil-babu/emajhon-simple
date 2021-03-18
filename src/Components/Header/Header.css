@@ -1,10 +1,16 @@
-
-
 .header{
     text-align: center;
     margin-top: 10px;
 }
 
+.sign-out{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 5px 15px;
+    background-color: orange;
+
+}
 .header img{
     height: 80px;
 }

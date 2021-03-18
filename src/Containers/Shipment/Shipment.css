@@ -1,0 +1,42 @@
+
+.ship-form{
+    background-color: #fff;
+    box-shadow: 0 0 2.25rem #9da5ab;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin:20px auto;
+    padding: 20px;
+}
+label{
+    font-size: 17px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 8px;
+}
+input{
+    padding: 8px;
+}
+.submit{
+    width: 100%;
+    margin-top: 10px;
+    background-color: orange;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+}
+.order-completed{
+    width: 60%;
+    margin: auto;
+    padding: 10px 12px;
+    background-color: rgb(41, 204, 41);
+    color: #fff;
+    text-align: center;
+    font-size: 40px;
+    margin-top: 80px;
+    text-transform: uppercase;
+}
+.order-completed p{
+    font-size: 25px;
+}

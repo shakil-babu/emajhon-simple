@@ -5,9 +5,11 @@ import fakeData from '../../fakeData/index.js';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 import happyImg from '../../images/giphy.gif';
+import { useHistory } from 'react-router-dom';
 const Review = () => {
     const [cart, setCart] = useState([]);
     const [orderPlaced, setOrderPlaced] = useState(false);
+    const history = useHistory();
     useEffect(() => {
         const savedData = getDatabaseCart();
         const productKeys = Object.keys(savedData);
@@ -23,10 +25,12 @@ const Review = () => {
         setCart(newCart)
         removeFromDatabaseCart(key);
     }
-    const handlePlaceOrder = () => {
-        setCart([]);
-        processOrder();
-        setOrderPlaced(true);
+    const handleProccedCheckout = () => {
+
+        history.push('/shipment')
+        // setCart([]);
+        // processOrder();
+        // setOrderPlaced(true);
     }
     return (
         <>
@@ -40,7 +44,7 @@ const Review = () => {
                 </div>
                 <div className="cart-containr">
                     <Cart cart={cart} >
-                        <button onClick={handlePlaceOrder} className='btn'>Place order</button>
+                        <button onClick={handleProccedCheckout} className='btn'>Procced checkout</button>
                     </Cart>
                 </div>
             </div>
